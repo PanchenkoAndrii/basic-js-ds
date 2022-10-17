@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { Node } = require('../extensions/list-tree.js');
+const { Node } = require('../extensions/list-tree.js');
 
 /**
 * Implement simple binary search tree according to task description
@@ -8,42 +8,75 @@ const { NotImplementedError } = require('../extensions/index.js');
 */
 class BinarySearchTree {
 
-  root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+	constructor() {
+		this.Root = null; // корень bst
+	}
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+	root() {
+		return this.Root;
+	}
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+	add(data) {
+		this.Root = addNode(this.Root, data)
+		function addNode(node, data) {
+			if (node === null) {
+				return new Node(data);
+			}
+			else if (node.data === data) {
+				return node;
+			}
+			else if (node.data < data) {
+				node.right = addNode(node.right, data);
+				return node;
+			} else {
+				node.left = addNode(node.left, data);
+				return node;
+			}
+		}
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+	}
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
 
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+	has(data) {
+		return hasBoolean(this.Root, data)
 
-  max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+		function hasBoolean(node, data) {
+			if (!node) {
+				return false
+			}
+			else if (node.data === data) {
+				return true
+			}
+			else if (data < node.data) {
+				return hasBoolean(node.left, data)
+			}
+			else {
+				return hasBoolean(node.right, data)
+			}
+		}
+	}
+
+	find(/* data */) {
+		throw new NotImplementedError('Not implemented');
+		// remove line with error and write your code here
+	}
+
+	remove(/* data */) {
+		throw new NotImplementedError('Not implemented');
+		// remove line with error and write your code here
+	}
+
+	min() {
+		throw new NotImplementedError('Not implemented');
+		// remove line with error and write your code here
+	}
+
+	max() {
+		throw new NotImplementedError('Not implemented');
+		// remove line with error and write your code here
+	}
 }
 
 module.exports = {
-  BinarySearchTree
+	BinarySearchTree
 };
