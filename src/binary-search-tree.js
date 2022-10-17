@@ -42,23 +42,37 @@ class BinarySearchTree {
 
 		function hasBoolean(node, data) {
 			if (!node) {
-				return false
+				return false;
 			}
 			else if (node.data === data) {
-				return true
+				return true;
 			}
 			else if (data < node.data) {
-				return hasBoolean(node.left, data)
+				return hasBoolean(node.left, data);
 			}
 			else {
-				return hasBoolean(node.right, data)
+				return hasBoolean(node.right, data);
 			}
 		}
 	}
 
-	find(/* data */) {
-		throw new NotImplementedError('Not implemented');
-		// remove line with error and write your code here
+	find(data) {
+		return findBoolean(this.Root, data)
+
+		function findBoolean(node, data) {
+			if (!node) {
+				return null;
+			}
+			else if (node.data === data) {
+				return node;
+			}
+			else if (data < node.data) {
+				return findBoolean(node.left, data)
+			}
+			else {
+				return findBoolean(node.right, data)
+			}
+		}
 	}
 
 	remove(/* data */) {
